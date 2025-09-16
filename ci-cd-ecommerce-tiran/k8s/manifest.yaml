@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${SITE_NAME}-app
+  namespace: ${PRODUCTION_NAMESPACE}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ${SITE_NAME}-app
+  template:
+    metadata:
+      labels:
+        app: ${SITE_NAME}-app
+    spec:
+      containers:
+        - name: ${SITE_NAME}-app
+          image: docker.io/$DOCKERHUB_USER/${SITE_NAME}:${CI_COMMIT_SHA}
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGODB_URI
+              value: "mongodb+srv://hoseinzolghadr021:QNb0BV7Osu0Nflye@cluster0.vambg7i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+            # - name: NODE_ENV
+            #   value: "production"
+          resources:
+            requests:
+              memory: "1000Mi"         # 2 × 500m CPU = 1Gi
+              cpu: "500m"
+              ephemeral-storage: "500Mi"
+            limits:
+              memory: "2000Mi"         # 2 × 1000m CPU = 2Gi
+              cpu: "1000m"
+              ephemeral-storage: "500Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${SITE_NAME}-service
+  namespace: ${PRODUCTION_NAMESPACE}
+spec:
+  selector:
+    app: ${SITE_NAME}-app
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: ClusterIP

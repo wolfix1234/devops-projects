@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ${SITE_NAME}-ingress
+  namespace: ${PRODUCTION_NAMESPACE}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: tiran.tomakdigitalagency.ir
+  # - host: ${SITE_NAME}-9ddcd5133c-${PRODUCTION_NAMESPACE}.apps.ir-central1.arvancaas.ir
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ${SITE_NAME}-service
+            port:
+              number: 80

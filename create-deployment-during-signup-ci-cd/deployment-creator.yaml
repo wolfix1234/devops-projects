@@ -1,0 +1,186 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-{name-of-the-deployment}
+  namespace: mamad
+data:
+  STOREID: {base64-encoded-storeid}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {name-of-the-deployment}
+  namespace: mamad
+  labels:
+    app: {name-of-the-deployment}
+spec:
+  clusterIP: None
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: {name-of-the-deployment}
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {name-of-the-deployment}
+  namespace: mamad
+  labels:
+    app: {name-of-the-deployment}
+spec:
+  replicas: 1 # Initial replicas, HPA will scale this
+  selector:
+    matchLabels:
+      app: {name-of-the-deployment}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {name-of-the-deployment}
+        name: {name-of-the-deployment}
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/cloud-container-g2
+                    operator: In
+                    values:
+                      - "true"
+      tolerations:
+        - effect: NoSchedule
+          key: role
+          operator: Equal
+          value: cloud-container-g2
+      containers:
+        - name: {name-of-the-deployment}
+          image: wolfix1245/userwebsite:1.5
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: MONGODB_URI
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: JWT_SECRET
+            - name: VPS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: VPS_TOKEN
+            - name: VPS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: VPS_URL
+            - name: ZARINPAL_MERCHANT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: ZARINPAL_MERCHANT_ID
+            - name: STOREID
+              valueFrom:
+                secretKeyRef:
+                  name: secret-{name-of-the-deployment}
+                  key: STOREID
+            - name: NEXT_PUBLIC_BASE_USERWEBSITE_PAYMENT_URL
+              # value: "{name-of-the-deployment}-9ddcd5133c-mamad.apps.ir-central1.arvancaas.ir"
+              value: "tomakdigitalagency.ir"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1000Mi"
+              ephemeral-storage: "500Mi"
+            limits:
+              cpu: "1000m"
+              memory: "2000Mi"
+              ephemeral-storage: "500Mi"
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {name-of-the-deployment}-hpa
+  namespace: mamad
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {name-of-the-deployment}
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+# ---
+# apiVersion: autoscaling.k8s.io/v1
+# kind: VerticalPodAutoscaler
+# metadata:
+#   name: {name-of-the-deployment}-vpa
+#   namespace: mamad
+# spec:
+#   targetRef:
+#     apiVersion: "apps/v1"
+#     kind: Deployment
+#     name: {name-of-the-deployment}
+#   updatePolicy:
+#     updateMode: "Auto" # Automatically adjusts pod resources
+#   resourcePolicy:
+#     containerPolicies:
+#       - containerName: {name-of-the-deployment}
+#         minAllowed:
+#           cpu: 100m
+#           memory: 200Mi
+#         maxAllowed:
+#           cpu: 2
+#           memory: 2Gi
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {name-of-the-deployment}-ingress
+  namespace: mamad
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: {name-of-the-deployment}-9ddcd5133c-mamad.apps.ir-central1.arvancaas.ir
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {name-of-the-deployment}
+                port:
+                  number: 80

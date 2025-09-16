@@ -1,0 +1,166 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${SITE_NAME}-app
+  namespace: ${MAMAD_NAMESPACE}
+  labels:
+    app: ${SITE_NAME}-app
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 600
+  selector:
+    matchLabels:
+      app: ${SITE_NAME}-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: ${SITE_NAME}-app
+        name: ${SITE_NAME}-app
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/cloud-container-g2
+                    operator: In
+                    values:
+                      - "true"
+      containers:
+        - name: ${SITE_NAME}-app
+          image: docker.io/$DOCKERHUB_USER/${SITE_NAME}:${CI_COMMIT_SHA}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "1000m"
+              memory: "2000Mi"
+              ephemeral-storage: "500Mi"
+            requests:
+              cpu: "500m"
+              memory: "1000Mi"
+              ephemeral-storage: "500Mi"
+          env:
+            - name: IMAGE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: IMAGE_NAME
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: JWT_SECRET
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: MONGODB_URI
+            - name: VPS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: VPS_TOKEN
+            - name: VPS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: VPS_URL
+            # - name: ZARINPAL_MERCHANT_ID
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: shared-secret
+            #       key: ZARINPAL_MERCHANT_ID
+            # - name: AI_DEEPSEEK_KEY
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: shared-secret
+            #       key: AI_DEEPSEEK_KEY
+            - name: ARVAN_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: ARVAN_API_TOKEN
+            - name: SMS_IR_LINE_NUMBER
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: SMS_IR_LINE_NUMBER
+            - name: SMS_IR_TEMPLATE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: SMS_IR_TEMPLATE_ID
+            - name: SMS_IR_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: SMS_IR_API_KEY
+            - name: NAMESPACE
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: NAMESPACE
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      tolerations:
+        - key: role
+          operator: Equal
+          value: cloud-container-g2
+          effect: NoSchedule
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${SITE_NAME}-service
+  namespace: ${MAMAD_NAMESPACE}
+  labels:
+    app: ${SITE_NAME}-app
+spec:
+  type: ClusterIP
+  selector:
+    app: ${SITE_NAME}-app
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+      protocol: TCP
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ${SITE_NAME}-app
+  namespace: ${MAMAD_NAMESPACE}
+  labels:
+    app: ${SITE_NAME}-app
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ${SITE_NAME}-app
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 70

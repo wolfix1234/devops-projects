@@ -1,0 +1,52 @@
+stages:
+  - docker
+  - deploy
+
+variables:
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: tcp://docker:2375/
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+  policy: pull-push
+
+# ----------------------------
+# 1. Build & Push Docker Image
+# ----------------------------
+docker-build:
+  stage: docker
+  image: docker:24
+  services:
+    - docker:24-dind
+  script:
+    - echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
+    - docker build -t docker.io/$DOCKERHUB_USER/${SITE_NAME}:${CI_COMMIT_SHA} .
+    - docker push docker.io/$DOCKERHUB_USER/${SITE_NAME}:${CI_COMMIT_SHA}
+  only:
+    - main
+  tags:
+    - docker
+
+
+# ----------------------------
+# 2. Deploy to Kubernetes (using Docker Hub)
+# ----------------------------
+deploy:
+  stage: deploy
+  script:
+    - echo "=== DEPLOY TO K8S (Docker Hub / public repo) ==="
+    - export KUBECONFIG=/home/gitlab-runner/.kube/config
+    - kubectl config set-context --current --namespace=${PRODUCTION_NAMESPACE}
+    # Apply Deployment + Service
+    - envsubst < k8s/manifest.yaml | kubectl apply -f -
+    # Apply Ingress
+    - envsubst < k8s/ingress.yaml | kubectl apply -f -
+    # Wait for rollout
+    - kubectl rollout status deployment/${SITE_NAME}-app --timeout=1000s
+  only:
+    - main
+  tags:
+    - shell
+

@@ -1,0 +1,47 @@
+name: 🪞 Mirror to GitLab
+
+# Trigger this action on every push to the "main" branch
+# You can change this to any branch you want to mirror
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  mirror:
+    name: Push to GitLab
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches all history, not just the latest commit
+
+      - name: Configure Git for mirroring
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Push to GitLab (Branches and Tags)
+        run: |
+          # Add GitLab remote with authentication
+          git remote add gitlab https://$USERNAME:$TOKEN@$GITLAB_SERVER/$GITLAB_REPOSITORY.git
+          
+          # Fetch from GitLab to ensure we have latest state (optional but recommended)
+          git fetch gitlab || echo "Initial fetch may fail if repo is empty, continuing..."
+          
+          # Push the main branch forcefully (overwrites remote with local state)
+          echo "Pushing main branch to GitLab..."
+          git push gitlab HEAD:main --force
+          
+          # Push all tags
+          echo "Pushing tags to GitLab..."
+          git push --tags gitlab --force
+          
+          # Optional: Push other branches if needed
+          # echo "Pushing other branches to GitLab..."
+          # git push gitlab --all --force
+        env:
+          USERNAME: ${{ secrets.GITLAB_DEPLOY_USERNAME }}
+          TOKEN: ${{ secrets.GITLAB_DEPLOY_TOKEN }}
+          GITLAB_SERVER: musictomak.shop
+          GITLAB_REPOSITORY: root/complex-dashboard
