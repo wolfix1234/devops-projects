@@ -8,7 +8,12 @@ maybe i add some other special think like payment or bucket or other think on th
 
 note: im a bug bounty hunter too
 
-note: im fullstack on nextjs too for nextjs project please see other projects on github
+note: im fullstack on nextjs too for nextjs project please see other projects on github.
+sample of the nextjs:
 
-note: i have a good experience with python too, for python project please see other projects on github
+https://github.com/wolfix1234/amlak-site
 
+note: i have a good experience with python too, for python project please see other projects on github. sample of the python:
+
+
+https://github.com/wolfix1234/asset-discovery
