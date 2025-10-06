@@ -1,6 +1,6 @@
 ### DevOps-focused Full-Stack Engineer (Next.js) • Experienced Python developer • Active bug-bounty hunter — curated, production-oriented DevOps examples below for a focused code review.
 
-Note: This repository is a curated sample of selected projects and infrastructure artifacts created specifically for résumé review. It is not a complete listing of my work. Please review the code and configurations carefully — I separated the DevOps content to make a focused evaluation straightforward.
+Note: This repository is a curated sample of selected projects and infrastructure artifacts created specifically for resume review. It is not a complete listing of my work. Please review the code and configurations carefully — I separated the DevOps content to make a focused evaluation straightforward.
 
 ### What you’ll find here
 
