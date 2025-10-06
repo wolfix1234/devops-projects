@@ -1,19 +1,49 @@
-note: this repo just is sample of my projects and these are not all of them and this is specificly for resume so please check the code Carefully and just dont scroll on all of them.
+DevOps-focused Full-Stack Engineer (Next.js) • Experienced Python developer • Active bug-bounty hunter — curated, production-oriented DevOps examples below for a focused code review.
 
-These are some DevOps processes from the project I’m working on.
+Note: This repository is a curated sample of selected projects and infrastructure artifacts created specifically for résumé review. It is not a complete listing of my work. Please review the code and configurations carefully — I separated the DevOps content to make a focused evaluation straightforward.
 
-if you see i separate the devops part, to easy check.
+What you’ll find here
 
-maybe i add some other special think like payment or bucket or other think on this repo too, but i try just use DevOps think on here.
+A dedicated /devops directory containing the DevOps artifacts for the project I’m working on (Dockerfiles, compose files, Kubernetes manifests, deployment patterns and environment configuration).
 
-note: im a bug bounty hunter too
+Examples that demonstrate production-ready approaches for containerized Next.js applications, including a multi-container architecture (dashboard, core, site, MongoDB) and Kubernetes deployment manifests.
 
-note: im fullstack on nextjs too for nextjs project please see other projects on github.
-sample of the nextjs:
+Focused, pragmatic solutions intended for real-world deployments rather than toy or tutorial examples.
 
-https://github.com/wolfix1234/amlak-site
+Why this repo
 
-note: i have a good experience with python too, for python project please see other projects on github. sample of the python:
+Curated for reviewers: I separated the DevOps work to make it easy for hiring teams to inspect infrastructure, manifests and automation without sifting through unrelated app code.
 
+Production intent: The artifacts show how I handle containerization, orchestration, and environment management for scalable Next.js services.
 
-https://github.com/wolfix1234/asset-discovery
+Not exhaustive: I may add other integrations here (payments, object storage buckets, etc.), but the current repo intentionally highlights DevOps concerns only.
+
+Other relevant projects (full code)
+
+Full-stack Next.js samples: https://github.com/wolfix1234/amlak-site
+
+Python projects & tooling: https://github.com/wolfix1234/asset-discovery
+
+Quick skills summary
+
+Docker & multi-container architectures
+
+Kubernetes manifests & deployment strategies
+
+Next.js (full-stack)
+
+Python (scripting, tooling)
+
+MongoDB (used in the sample architecture)
+
+Security mindset — active bug-bounty hunter
+
+How to evaluate
+
+Start in /devops — each subfolder contains a README explaining purpose and how to run the configs locally or in a cluster.
+
+Inspect Dockerfiles, compose files, and k8s manifests to see decisions about images, healthchecks, pod specs, volumes, and secrets handling.
+
+Review deployment patterns and any automation scripts for CI/CD and rollouts.
+
+If you want a live walkthrough of any component or the full architecture, I’m happy to schedule a short demo.
