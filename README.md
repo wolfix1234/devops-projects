@@ -40,7 +40,7 @@ Security mindset — active bug-bounty hunter
 
 How to evaluate
 
-Start in /devops — each subfolder contains a README explaining purpose and how to run the configs locally or in a cluster.
+each subfolder contains a README explaining purpose and how to run the configs locally or in a cluster that was for the projects.
 
 Inspect Dockerfiles, compose files, and k8s manifests to see decisions about images, healthchecks, pod specs, volumes, and secrets handling.
 
