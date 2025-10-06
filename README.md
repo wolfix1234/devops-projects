@@ -20,7 +20,7 @@ Not exhaustive: I may add other integrations here (payments, object storage buck
 
 Other relevant projects (full code)
 
-`Full-stack Next.js samples:` 
+`Full-stack Next.js sample:` 
 ```
 https://github.com/wolfix1234/amlak-site
 ```
