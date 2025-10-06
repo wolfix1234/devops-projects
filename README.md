@@ -20,9 +20,15 @@ Not exhaustive: I may add other integrations here (payments, object storage buck
 
 Other relevant projects (full code)
 
-`Full-stack Next.js samples: https://github.com/wolfix1234/amlak-site`
+`Full-stack Next.js samples:` 
+```
+https://github.com/wolfix1234/amlak-site
+```
 
-`Python projects & tooling: https://github.com/wolfix1234/asset-discovery`
+`Python projects & tooling:` 
+```
+https://github.com/wolfix1234/asset-discovery
+```
 
 ### Quick skills summary
 
