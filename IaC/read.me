@@ -1,0 +1,13 @@
+# Initialize
+terraform init
+
+# Create environments
+terraform workspace new dev
+terraform workspace new staging
+terraform workspace new prod
+
+# Switch to one (e.g., dev)
+terraform workspace select dev
+
+# Apply with correct vars
+terraform apply -var-file=env/dev.tfvars
