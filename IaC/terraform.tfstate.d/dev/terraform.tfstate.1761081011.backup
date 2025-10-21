@@ -1,0 +1,728 @@
+{
+  "version": 4,
+  "terraform_version": "1.13.4",
+  "serial": 12,
+  "lineage": "c51a3570-5e5a-680b-9af0-646349a22699",
+  "outputs": {},
+  "resources": [
+    {
+      "module": "module.complex",
+      "mode": "managed",
+      "type": "kubernetes_ingress_v1",
+      "name": "app",
+      "provider": "module.complex.provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "status": "tainted",
+          "schema_version": 0,
+          "attributes": {
+            "id": "development/complex-ingress",
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 0,
+                "labels": null,
+                "name": "complex-ingress",
+                "namespace": "development",
+                "resource_version": "",
+                "uid": ""
+              }
+            ],
+            "spec": [
+              {
+                "default_backend": [],
+                "ingress_class_name": "nginx",
+                "rule": [
+                  {
+                    "host": "complexdev.tomakdigitalagency.ir",
+                    "http": [
+                      {
+                        "path": [
+                          {
+                            "backend": [
+                              {
+                                "resource": [],
+                                "service": [
+                                  {
+                                    "name": "complex",
+                                    "port": [
+                                      {
+                                        "name": "",
+                                        "number": 80
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ],
+                            "path": "/",
+                            "path_type": "Prefix"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "tls": []
+              }
+            ],
+            "status": null,
+            "timeouts": null,
+            "wait_for_load_balancer": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": null,
+            "kind": null,
+            "name": null,
+            "namespace": null
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "module.complex.kubernetes_service.app"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.complex",
+      "mode": "managed",
+      "type": "kubernetes_service",
+      "name": "app",
+      "provider": "module.complex.provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "id": "development/complex",
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 0,
+                "labels": {
+                  "app": "complex"
+                },
+                "name": "complex",
+                "namespace": "development",
+                "resource_version": "3166548704",
+                "uid": "ce53d463-58e7-4794-b329-363a4f935e08"
+              }
+            ],
+            "spec": [
+              {
+                "allocate_load_balancer_node_ports": true,
+                "cluster_ip": "10.102.216.132",
+                "cluster_ips": [
+                  "10.102.216.132"
+                ],
+                "external_ips": null,
+                "external_name": "",
+                "external_traffic_policy": "",
+                "health_check_node_port": 0,
+                "internal_traffic_policy": "Cluster",
+                "ip_families": [
+                  "IPv4"
+                ],
+                "ip_family_policy": "SingleStack",
+                "load_balancer_class": "",
+                "load_balancer_ip": "",
+                "load_balancer_source_ranges": null,
+                "port": [
+                  {
+                    "app_protocol": "",
+                    "name": "http",
+                    "node_port": 0,
+                    "port": 80,
+                    "protocol": "TCP",
+                    "target_port": "3000"
+                  }
+                ],
+                "publish_not_ready_addresses": false,
+                "selector": {
+                  "app": "complex"
+                },
+                "session_affinity": "None",
+                "session_affinity_config": [],
+                "type": "ClusterIP"
+              }
+            ],
+            "status": [
+              {
+                "load_balancer": [
+                  {
+                    "ingress": []
+                  }
+                ]
+              }
+            ],
+            "timeouts": null,
+            "wait_for_load_balancer": true
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": "v1",
+            "kind": "Service",
+            "name": "complex",
+            "namespace": "development"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDB9LCJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    },
+    {
+      "module": "module.dashboard",
+      "mode": "managed",
+      "type": "kubernetes_ingress_v1",
+      "name": "app",
+      "provider": "module.dashboard.provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "id": "development/dashboard-ingress",
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 1,
+                "labels": null,
+                "name": "dashboard-ingress",
+                "namespace": "development",
+                "resource_version": "3166549134",
+                "uid": "4b5d9d23-e7d4-4d2f-8796-cb833745583f"
+              }
+            ],
+            "spec": [
+              {
+                "default_backend": [],
+                "ingress_class_name": "nginx",
+                "rule": [
+                  {
+                    "host": "dashboarddev.tomakdigitalagency.ir",
+                    "http": [
+                      {
+                        "path": [
+                          {
+                            "backend": [
+                              {
+                                "resource": [],
+                                "service": [
+                                  {
+                                    "name": "dashboard",
+                                    "port": [
+                                      {
+                                        "name": "",
+                                        "number": 80
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ],
+                            "path": "/",
+                            "path_type": "Prefix"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "tls": []
+              }
+            ],
+            "status": [
+              {
+                "load_balancer": [
+                  {
+                    "ingress": []
+                  }
+                ]
+              }
+            ],
+            "timeouts": null,
+            "wait_for_load_balancer": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": "networking.k8s.io/v1",
+            "kind": "Ingress",
+            "name": "dashboard-ingress",
+            "namespace": "development"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "module.dashboard.kubernetes_service.app"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.dashboard",
+      "mode": "managed",
+      "type": "kubernetes_service",
+      "name": "app",
+      "provider": "module.dashboard.provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "id": "development/dashboard",
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 0,
+                "labels": {
+                  "app": "dashboard"
+                },
+                "name": "dashboard",
+                "namespace": "development",
+                "resource_version": "3166548723",
+                "uid": "025499e6-905f-40ec-b773-b6442fdd3c07"
+              }
+            ],
+            "spec": [
+              {
+                "allocate_load_balancer_node_ports": true,
+                "cluster_ip": "10.97.38.178",
+                "cluster_ips": [
+                  "10.97.38.178"
+                ],
+                "external_ips": null,
+                "external_name": "",
+                "external_traffic_policy": "",
+                "health_check_node_port": 0,
+                "internal_traffic_policy": "Cluster",
+                "ip_families": [
+                  "IPv4"
+                ],
+                "ip_family_policy": "SingleStack",
+                "load_balancer_class": "",
+                "load_balancer_ip": "",
+                "load_balancer_source_ranges": null,
+                "port": [
+                  {
+                    "app_protocol": "",
+                    "name": "http",
+                    "node_port": 0,
+                    "port": 80,
+                    "protocol": "TCP",
+                    "target_port": "3000"
+                  }
+                ],
+                "publish_not_ready_addresses": false,
+                "selector": {
+                  "app": "dashboard"
+                },
+                "session_affinity": "None",
+                "session_affinity_config": [],
+                "type": "ClusterIP"
+              }
+            ],
+            "status": [
+              {
+                "load_balancer": [
+                  {
+                    "ingress": []
+                  }
+                ]
+              }
+            ],
+            "timeouts": null,
+            "wait_for_load_balancer": true
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": "v1",
+            "kind": "Service",
+            "name": "dashboard",
+            "namespace": "development"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDB9LCJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    },
+    {
+      "module": "module.landing",
+      "mode": "managed",
+      "type": "kubernetes_deployment",
+      "name": "app",
+      "provider": "module.landing.provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "status": "tainted",
+          "schema_version": 1,
+          "attributes": {
+            "id": "development/landing",
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 0,
+                "labels": {
+                  "app": "landing"
+                },
+                "name": "landing",
+                "namespace": "development",
+                "resource_version": "",
+                "uid": ""
+              }
+            ],
+            "spec": [
+              {
+                "min_ready_seconds": 0,
+                "paused": false,
+                "progress_deadline_seconds": 600,
+                "replicas": "1",
+                "revision_history_limit": 3,
+                "selector": [
+                  {
+                    "match_expressions": [],
+                    "match_labels": {
+                      "app": "landing"
+                    }
+                  }
+                ],
+                "strategy": [
+                  {
+                    "rolling_update": [
+                      {
+                        "max_surge": "25%",
+                        "max_unavailable": "0"
+                      }
+                    ],
+                    "type": "RollingUpdate"
+                  }
+                ],
+                "template": [
+                  {
+                    "metadata": [
+                      {
+                        "annotations": null,
+                        "generate_name": "",
+                        "generation": 0,
+                        "labels": {
+                          "app": "landing",
+                          "name": "landing"
+                        },
+                        "name": "",
+                        "namespace": "",
+                        "resource_version": "",
+                        "uid": ""
+                      }
+                    ],
+                    "spec": [
+                      {
+                        "active_deadline_seconds": 0,
+                        "affinity": [
+                          {
+                            "node_affinity": [
+                              {
+                                "preferred_during_scheduling_ignored_during_execution": [],
+                                "required_during_scheduling_ignored_during_execution": [
+                                  {
+                                    "node_selector_term": [
+                                      {
+                                        "match_expressions": [
+                                          {
+                                            "key": "node-role.kubernetes.io/cloud-container-g2",
+                                            "operator": "In",
+                                            "values": [
+                                              "true"
+                                            ]
+                                          }
+                                        ],
+                                        "match_fields": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ],
+                            "pod_affinity": [],
+                            "pod_anti_affinity": []
+                          }
+                        ],
+                        "automount_service_account_token": true,
+                        "container": [
+                          {
+                            "args": null,
+                            "command": null,
+                            "env": [],
+                            "env_from": [],
+                            "image": "wolfix1245/landing:1.0",
+                            "image_pull_policy": "IfNotPresent",
+                            "lifecycle": [],
+                            "liveness_probe": [],
+                            "name": "landing",
+                            "port": [
+                              {
+                                "container_port": 3000,
+                                "host_ip": "",
+                                "host_port": 0,
+                                "name": "",
+                                "protocol": "TCP"
+                              }
+                            ],
+                            "readiness_probe": [],
+                            "resources": [
+                              {
+                                "limits": {
+                                  "cpu": "1000m",
+                                  "ephemeral-storage": "1Gi",
+                                  "memory": "2000Mi"
+                                },
+                                "requests": {
+                                  "cpu": "500m",
+                                  "ephemeral-storage": "1Gi",
+                                  "memory": "1000Mi"
+                                }
+                              }
+                            ],
+                            "security_context": [],
+                            "startup_probe": [],
+                            "stdin": false,
+                            "stdin_once": false,
+                            "termination_message_path": "/dev/termination-log",
+                            "termination_message_policy": "",
+                            "tty": false,
+                            "volume_device": [],
+                            "volume_mount": [],
+                            "working_dir": ""
+                          }
+                        ],
+                        "dns_config": [],
+                        "dns_policy": "ClusterFirst",
+                        "enable_service_links": true,
+                        "host_aliases": [],
+                        "host_ipc": false,
+                        "host_network": false,
+                        "host_pid": false,
+                        "hostname": "",
+                        "image_pull_secrets": [],
+                        "init_container": [],
+                        "node_name": "",
+                        "node_selector": null,
+                        "os": [],
+                        "priority_class_name": "",
+                        "readiness_gate": [],
+                        "restart_policy": "Always",
+                        "runtime_class_name": "",
+                        "scheduler_name": "default-scheduler",
+                        "security_context": [],
+                        "service_account_name": "",
+                        "share_process_namespace": false,
+                        "subdomain": "",
+                        "termination_grace_period_seconds": 30,
+                        "toleration": [
+                          {
+                            "effect": "NoSchedule",
+                            "key": "role",
+                            "operator": "Equal",
+                            "toleration_seconds": "",
+                            "value": "cloud-container-g2"
+                          }
+                        ],
+                        "topology_spread_constraint": [],
+                        "volume": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "timeouts": null,
+            "wait_for_rollout": true
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": null,
+            "kind": null,
+            "name": null,
+            "namespace": null
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwLCJ1cGRhdGUiOjYwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9"
+        }
+      ]
+    },
+    {
+      "module": "module.landing",
+      "mode": "managed",
+      "type": "kubernetes_ingress_v1",
+      "name": "app",
+      "provider": "module.landing.provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "status": "tainted",
+          "schema_version": 0,
+          "attributes": {
+            "id": "development/landing-ingress",
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 0,
+                "labels": null,
+                "name": "landing-ingress",
+                "namespace": "development",
+                "resource_version": "",
+                "uid": ""
+              }
+            ],
+            "spec": [
+              {
+                "default_backend": [],
+                "ingress_class_name": "nginx",
+                "rule": [
+                  {
+                    "host": "dev.tomakdigitalagency.ir",
+                    "http": [
+                      {
+                        "path": [
+                          {
+                            "backend": [
+                              {
+                                "resource": [],
+                                "service": [
+                                  {
+                                    "name": "landing",
+                                    "port": [
+                                      {
+                                        "name": "",
+                                        "number": 80
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ],
+                            "path": "/",
+                            "path_type": "Prefix"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "tls": []
+              }
+            ],
+            "status": null,
+            "timeouts": null,
+            "wait_for_load_balancer": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": null,
+            "kind": null,
+            "name": null,
+            "namespace": null
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "module.landing.kubernetes_service.app"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.landing",
+      "mode": "managed",
+      "type": "kubernetes_service",
+      "name": "app",
+      "provider": "module.landing.provider[\"registry.terraform.io/hashicorp/kubernetes\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "id": "development/landing",
+            "metadata": [
+              {
+                "annotations": null,
+                "generate_name": "",
+                "generation": 0,
+                "labels": {
+                  "app": "landing"
+                },
+                "name": "landing",
+                "namespace": "development",
+                "resource_version": "3166548711",
+                "uid": "2801fcfe-4f93-4480-9e8b-e2fd173085d7"
+              }
+            ],
+            "spec": [
+              {
+                "allocate_load_balancer_node_ports": true,
+                "cluster_ip": "10.103.47.165",
+                "cluster_ips": [
+                  "10.103.47.165"
+                ],
+                "external_ips": null,
+                "external_name": "",
+                "external_traffic_policy": "",
+                "health_check_node_port": 0,
+                "internal_traffic_policy": "Cluster",
+                "ip_families": [
+                  "IPv4"
+                ],
+                "ip_family_policy": "SingleStack",
+                "load_balancer_class": "",
+                "load_balancer_ip": "",
+                "load_balancer_source_ranges": null,
+                "port": [
+                  {
+                    "app_protocol": "",
+                    "name": "http",
+                    "node_port": 0,
+                    "port": 80,
+                    "protocol": "TCP",
+                    "target_port": "3000"
+                  }
+                ],
+                "publish_not_ready_addresses": false,
+                "selector": {
+                  "app": "landing"
+                },
+                "session_affinity": "None",
+                "session_affinity_config": [],
+                "type": "ClusterIP"
+              }
+            ],
+            "status": [
+              {
+                "load_balancer": [
+                  {
+                    "ingress": []
+                  }
+                ]
+              }
+            ],
+            "timeouts": null,
+            "wait_for_load_balancer": true
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 1,
+          "identity": {
+            "api_version": "v1",
+            "kind": "Service",
+            "name": "landing",
+            "namespace": "development"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDB9LCJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
