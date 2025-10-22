@@ -1,48 +1,41 @@
-### DevOps-focused Full-Stack Engineer (Next.js) • Experienced Python developer • Active bug-bounty hunter — curated, production-oriented DevOps examples below for a focused code review.
+# DevOps Engineer Portfolio
 
-This repository highlights my DevOps work for **[Tomak Digital Agency](https://www.tomakdigitalagency.ir/)** — a production-grade, Next.js-based site builder platform — along with other selected infrastructure projects. I was responsible for containerization, orchestration, CI/CD automation, and scalable deployment of its multi-service architecture.
+**Production-ready DevOps solutions | Next.js | Python | Security**
 
-Note: This repository is a curated sample of selected projects and infrastructure artifacts created specifically for resume review. It is not a complete listing of my work. Please review the code and configurations carefully — I separated the DevOps content to make a focused evaluation straightforward.
+## 🎯 What's Inside
 
-### What you’ll find here
+**Production DevOps for [Tomak Digital Agency](https://www.tomakdigitalagency.ir/)**
+- Multi-service Next.js platform (dashboard, core, site, MongoDB)
+- Complete containerization & Kubernetes deployment
+- CI/CD automation & scalable infrastructure
 
-+ A dedicated directory containing the DevOps artifacts for the Tomak Digital Agency site builder project (Dockerfiles, compose files, Kubernetes manifests, deployment patterns, and environment configuration).
+## 🛠️ Core Skills
 
-+ Examples that demonstrate production-ready approaches for containerized Next.js applications, including a multi-container architecture (dashboard, core, site, MongoDB) and Kubernetes deployment manifests.
+- **Docker** - Multi-container architectures
+- **Kubernetes** - Production deployments & manifests  
+- **Next.js** - Full-stack development
+- **Python** - Automation & tooling
+- **Security** - Active bug bounty hunter
 
-+ Focused, pragmatic solutions intended for real-world deployments rather than toy or tutorial examples.
+## 📁 Repository Structure
 
-### Why this repo
+```
+├── tomak-digital/     # Complete DevOps setup
+│   ├── Dockerfiles
+│   ├── docker-compose.yml
+│   ├── k8s-manifests/
+│   └── deployment-configs/
+└── other-projects/    # Additional examples
+```
 
-+ Curated for reviewers: I separated the DevOps work to make it easy for hiring teams to inspect infrastructure, manifests, and automation without sifting through unrelated app code.
+## 🔗 Additional Projects
 
-+ Production intent: The artifacts show how I handle containerization, orchestration, and environment management for scalable Next.js services.
+- **Next.js Full-Stack**: [amlak-site](https://github.com/wolfix1234/amlak-site)
+- **Python Tools**: [asset-discovery](https://github.com/wolfix1234/asset-discovery) | [js-monitor](https://github.com/wolfix1234/js-monitor) | [fastapi-disk](https://github.com/wolfix1234/fastapi-disk)
 
-Not exhaustive: I may add other integrations here (payments, object storage buckets, etc.), but the current repo intentionally highlights DevOps concerns only.
+## 🚀 Quick Start
 
-### Other relevant projects (full code)
+Each folder contains a README with setup instructions. Review the Dockerfiles, compose files, and K8s manifests to see production-ready configurations.
 
-`Full-stack Next.js sample:`  
-https://github.com/wolfix1234/amlak-site  
-
-`Python projects & tooling:`  
-https://github.com/wolfix1234/asset-discovery  
-
-### Quick skills summary
-
-+ Docker & multi-container architectures  
-+ Kubernetes manifests & deployment strategies  
-+ Next.js (full-stack)  
-+ Python (scripting, tooling)  
-+ MongoDB (used in the sample architecture)  
-+ Security mindset — active bug-bounty hunter  
-
-### How to evaluate
-
-Each subfolder contains a README explaining purpose and how to run the configs locally or in a cluster that was for the projects.
-
-Inspect Dockerfiles, compose files, and k8s manifests to see decisions about images, health checks, pod specs, volumes, and secrets handling.
-
-Review deployment patterns and any automation scripts for CI/CD and rollouts.
-
-If you want a live walkthrough of any component or the full architecture, I’m happy to schedule a short demo.
+---
+*Ready for technical discussion or live demo*
