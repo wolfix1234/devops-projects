@@ -4,7 +4,7 @@
 
 ## 🎯 What's Inside
 
-**Production DevOps for [Tomak Digital Agency](https://www.tomakdigitalagency.ir/)**
+**Production DevOps for [Tomak Digital Agency](https://www.tomakdigitalagency.ir/)** *(private repos)*
 - Multi-service Next.js platform (dashboard, core, site, MongoDB)
 - Complete containerization & Kubernetes deployment
 - CI/CD automation & scalable infrastructure
