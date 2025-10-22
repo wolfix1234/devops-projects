@@ -20,12 +20,15 @@
 ## 📁 Repository Structure
 
 ```
-├── tomak-digital/     # Complete DevOps setup
-│   ├── Dockerfiles
-│   ├── docker-compose.yml
-│   ├── k8s-manifests/
-│   └── deployment-configs/
-└── other-projects/    # Additional examples
+├── ci-cd-ecommerce-tiran/           # E-commerce CI/CD pipeline
+├── ci-cd-oujamlak-bashscript-deploy-vps/  # VPS deployment automation
+├── create-deployment-during-signup-ci-cd/  # Dynamic K8s deployments
+├── IaC/                             # Terraform infrastructure
+├── bucket-arvan-upload-image/       # Cloud storage integration
+├── elastic-search/                  # Search implementation
+├── prometheus-grafana/              # Monitoring & metrics
+├── payment-zarinpal/               # Payment gateway
+└── redis/                          # Caching solutions
 ```
 
 ## 🔗 Additional Projects
