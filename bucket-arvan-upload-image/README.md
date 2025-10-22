@@ -1,22 +1,14 @@
-# Arvan Cloud Bucket Image Upload
+# Arvan Cloud Image Upload
 
-This folder contains implementation for uploading multiple images to Arvan Cloud bucket with race condition prevention.
+Multiple image upload to Arvan Cloud bucket with race condition prevention.
 
-## What's Inside
+## Stack
+- Next.js API routes + TypeScript
+- Arvan Cloud storage integration
+- Concurrent upload handling
 
-- **get-images.tsx** - Component for retrieving and displaying images from bucket
-- **model.ts** - Data models and types for image handling
-- **route.ts** - API routes for image upload operations
-- **upload.tsx** - Upload component with multiple file support
-
-## Purpose
-
-Implements secure and efficient image upload system using Arvan Cloud storage with proper error handling and race condition prevention for concurrent uploads.
-
-## Key Features
-
-- Multiple image upload support
-- Race condition prevention
-- Arvan Cloud bucket integration
-- Image retrieval and display
-- Type-safe data models
+## Key Files
+- `upload.tsx` - Multi-file upload component
+- `route.ts` - Upload API endpoints
+- `get-images.tsx` - Image retrieval component
+- `model.ts` - Type definitions

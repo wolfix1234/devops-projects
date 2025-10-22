@@ -1,26 +1,14 @@
-# Dynamic Deployment Creation During Signup
+# Dynamic K8s Deployment on Signup
 
-This folder contains implementation for automatically creating Kubernetes deployments when users sign up, with complete CI/CD pipeline.
+Auto-creates isolated Kubernetes deployments for each user signup (multi-tenant SaaS).
 
-## What's Inside
+## Stack
+- Next.js signup flow → K8s API
+- Dynamic resource provisioning
+- GitHub Actions → GitLab CI/CD
 
-- **.github/workflows/** - GitHub Actions for GitLab mirroring
-- **k8s/** - Kubernetes manifests (deployment, ingress, secrets, testing)
-- **.gitlab-ci.yml** - GitLab CI/CD pipeline
-- **createDeployment.ts** - Core deployment creation logic
-- **deployment-creator.yaml** - Kubernetes deployment template
-- **Dockerfile** - Container configuration
-- **signup.tsx** - Signup component with deployment trigger
-
-## Purpose
-
-Automatically provisions isolated Kubernetes deployments for each new user signup, enabling multi-tenant architecture with dedicated resources per user.
-
-## Key Features
-
-- Dynamic Kubernetes deployment creation
-- User-specific resource provisioning
-- Automated CI/CD pipeline
-- Secret management for deployments
-- Multi-tenant architecture support
-- Signup flow integration
+## Key Files
+- `createDeployment.ts` - K8s deployment logic
+- `signup.tsx` - Signup with deployment trigger
+- `k8s/` - Deployment templates
+- `deployment-creator.yaml` - K8s manifest template

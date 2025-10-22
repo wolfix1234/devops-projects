@@ -1,21 +1,14 @@
-# ZarinPal Payment Integration
+# ZarinPal Payment Gateway
 
-This folder contains ZarinPal payment gateway integration for Iranian e-commerce applications.
+Complete payment flow for Iranian e-commerce with ZarinPal integration.
 
-## What's Inside
+## Stack
+- ZarinPal API + Next.js
+- Payment request/verification
+- Cart management + callbacks
 
-- **cart.tsx** - Shopping cart component with payment integration
-- **landing-page-callback.ts** - Payment callback handler for landing page
-- **request-gateway.ts** - Payment request initiation logic
-- **verify-payment.ts** - Payment verification and confirmation
-
-## Purpose
-
-Implements complete ZarinPal payment flow including cart management, payment requests, callback handling, and payment verification for Iranian market applications.
-
-## Key Features
-
-- ZarinPal gateway integration
-- Payment request and verification
-- Callback URL handling
-- Cart management with payment flow
+## Key Files
+- `request-gateway.ts` - Payment initiation
+- `verify-payment.ts` - Payment confirmation
+- `cart.tsx` - Shopping cart component
+- `landing-page-callback.ts` - Callback handler
