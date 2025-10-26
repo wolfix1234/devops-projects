@@ -22,7 +22,7 @@
   - Development / Staging / Production  
 - مدیریت Secrets با HashiCorp Vault  
 - ۹۰٪ پروژه آماده و فاز نهایی تا سه هفته آینده تکمیل می‌شود.  
-- **نقش من:** طراحی کل DevOps، IaC، CI/CD، امنیت، Backend  
+- **نقش من:** طراحی کل DevOps، IaC، CI/CD، امنیت، بخشی از Backend  
 
 ---
 
