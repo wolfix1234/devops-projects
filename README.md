@@ -34,7 +34,7 @@
   - https://github.com/wolfix1234/chat-app  
 - **فلو:**  
 ```
-  push → GitHub Action → ورود به VPS → اجرای deploy.sh → استقرار اتوماتیک پروژه و چت اپ (Docker + Nginx + Cloudflare)
+push github => terriger workflow github => login to vps => run deploy.sh => deploy (docker + ngnix)
 ```
 ---
 
