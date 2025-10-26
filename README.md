@@ -34,7 +34,7 @@
   - https://github.com/wolfix1234/chat-app  
 - **فلو:**  
 ```
-push github => terriger workflow github => login to vps => run deploy.sh => deploy (docker + ngnix)
+push github => terigger workflow github => login to vps => run deploy.sh => deploy (docker + ngnix)
 ```
 ---
 
