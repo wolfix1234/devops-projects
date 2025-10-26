@@ -33,8 +33,9 @@
   - https://github.com/wolfix1234/amlak-site  
   - https://github.com/wolfix1234/chat-app  
 - **فلو:**  
+```
   push → GitHub Action → ورود به VPS → اجرای deploy.sh → استقرار اتوماتیک پروژه و چت اپ (Docker + Nginx + Cloudflare)
-
+```
 ---
 
 ### **پروژه Python – ابزار امنیت و DevOps**
