@@ -29,9 +29,7 @@
 ### **پروژه املاک (https://oujamlak.ir)**  
 - سایت + چت سرویس جداگانه  
 - استقرار روی VPS با CI/CD ساده (Bash Script) و پشت CDN کلودفلر  
-- ریپوها:
-  - https://github.com/wolfix1234/amlak-site  
-  - https://github.com/wolfix1234/chat-app  
+- ریپوها: (private)
 - **فلو:**  
 ```
 push github => terigger workflow github => login to vps => run deploy.sh => deploy (docker + ngnix)
