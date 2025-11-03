@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: tiran.tomakdigitalagency.ir
+  - host: tiran.wolfixsite.shop
   # - host: ${SITE_NAME}-9ddcd5133c-${PRODUCTION_NAMESPACE}.apps.ir-central1.arvancaas.ir
     http:
       paths:

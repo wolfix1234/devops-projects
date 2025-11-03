@@ -104,7 +104,7 @@ spec:
                   key: STOREID
             - name: NEXT_PUBLIC_BASE_USERWEBSITE_PAYMENT_URL
               # value: "{name-of-the-deployment}-9ddcd5133c-mamad.apps.ir-central1.arvancaas.ir"
-              value: "tomakdigitalagency.ir"
+              value: "wolfixsite.shop"
           resources:
             requests:
               cpu: "500m"

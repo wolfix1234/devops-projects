@@ -36,7 +36,7 @@
                 "ingress_class_name": "nginx",
                 "rule": [
                   {
-                    "host": "complexdev.tomakdigitalagency.ir",
+                    "host": "complexdev.wolfixsite.shop",
                     "http": [
                       {
                         "path": [
@@ -204,7 +204,7 @@
                 "ingress_class_name": "nginx",
                 "rule": [
                   {
-                    "host": "dashboarddev.tomakdigitalagency.ir",
+                    "host": "dashboarddev.wolfixsite.shop",
                     "http": [
                       {
                         "path": [
@@ -585,7 +585,7 @@
                 "ingress_class_name": "nginx",
                 "rule": [
                   {
-                    "host": "dev.tomakdigitalagency.ir",
+                    "host": "dev.wolfixsite.shop",
                     "http": [
                       {
                         "path": [
