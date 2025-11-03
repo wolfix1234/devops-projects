@@ -2,7 +2,7 @@
 
 Kubernetes deployment pipeline for e-commerce platform with database preloading.
 
-**Live:** https://tiran.tomakdigitalagency.ir
+**Live:** https://tiran.wolfixsite.shop
 
 ## Stack
 - GitHub Actions → GitLab CI/CD
