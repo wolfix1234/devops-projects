@@ -48,7 +48,7 @@ push github => terigger workflow github => login to vps => run deploy.sh => depl
 ---
 
 ## مهارت‌ها  
-Docker · Kubernetes · Terraform · GitHub Actions · **GitLab CI/CD** · Vault · ArvanCloud · Prometheus · Grafana · Redis · MongoDB · Next.js · Node.js · Python · **FastAPI / Flask** · OWASP · امنیت وب · Bash · Linux  
+Docker · Kubernetes · Terraform · GitHub Actions · **GitLab CI/CD** · Vault · ArvanCloud · Prometheus · Grafana · Redis · MongoDB · Next.js · Node.js · Python · **FastAPI / Flask** · OWASP · Bash · Linux  
 
 ---
 
