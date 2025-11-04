@@ -2,7 +2,7 @@
 
 Production deployment for Next.js real estate platform with zero-downtime CI/CD.
 
-**Live:** oujamlak.ir | **Source:** https://github.com/wolfix1234/amlak-site
+**Live:** oujamlak.ir
 
 ## Stack
 - Next.js app + Chat service + Nginx proxy
