@@ -38,11 +38,11 @@ push github => terigger workflow github => login to vps => run deploy.sh => depl
 
 ### **پروژه Python – ابزار امنیت و DevOps**
 **Asset Discovery (FastAPI)**  
-ریپو: https://github.com/wolfix1234/asset-discovery  
+ریپو: https://github.com/wolfixor/asset-discovery  
 برای پیدا کردن دارایی سازمان ها توی باگ بانتی
 
 **FastAPI Disk – NFS برای سایت‌ساز**  
-ریپو: https://github.com/wolfix1234/fastapi-disk  
+ریپو: https://github.com/wolfixor/fastapi-disk  
 نقش ان اف اس رو توی کوبرنتیز بازی میکنه 
 
 ---
