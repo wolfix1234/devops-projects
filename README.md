@@ -2,7 +2,7 @@
 
 ## درباره من  
 مهندس DevOps با تجربه در طراحی، پیاده‌سازی و مدیریت زیرساخت‌های مبتنی بر IaC، کانتینرسازی، Kubernetes و امنیت زیرساخت.  
-پروژه شاخص من، پلتفرم سایت ساز (https://www.wolfixsite.shop) است که در آن به تنهایی تمام زنجیره‌ی DevOps، CI/CD، IaC، امنیت و بخشی از Backend را مدیریت کردم.  
+پروژه شاخص من، پلتفرم سایت ساز (https://www.tomakdigitalagency.ir) است که در آن به تنهایی تمام زنجیره‌ی DevOps، CI/CD، IaC، امنیت و بخشی از Backend را مدیریت کردم.  
 این سیستم قادر است در کمتر از ۱ دقیقه یک سایت جدید ایجاد کند و در آینده با هوش مصنوعی و «تک پرامپت» تکمیل خواهد شد.  
 
 به‌صورت هم‌زمان در حوزه امنیت و باگ‌بانتی نیز فعالیت دارم و ابزارهای امنیتی اختصاصی با Python توسعه می‌دهم.
@@ -11,12 +11,12 @@
 
 ## پروژه‌های شاخص  
 
-### **پلتفرم Site-Builder (https://www.wolfixsite.shop)**  
+### **پلتفرم Site-Builder (https://www.tomakdigitalagency.ir)**  
 - **لینک‌ها:**
-  - سایت اصلی: https://www.wolfixsite.shop  
-  - داشبورد ادمین: https://dashboard.wolfixsite.shop  
-  - سرویس ساخت سایت: https://complex.wolfixsite.shop  
-  - دامنه کاربر: https://storeid.wolfixsite.shop (زیردامنه خودکار – فاز بعد: دامنه اختصاصی)  
+  - سایت اصلی: https://www.tomakdigitalagency.ir  
+  - داشبورد ادمین: https://dashboard.tomakdigitalagency.ir
+  - سرویس ساخت سایت: https://complex.tomakdigitalagency.ir
+  - دامنه کاربر: https://storeid.tomakdigitalagency.ir (زیردامنه خودکار – فاز بعد: دامنه اختصاصی) 
 - **ساختار پروژه:** 6 مخزن (landing، dashboard، core، user-website، payment، iac)  
 - هر سرویس دارای CI/CD مستقل و استقرار اتوماتیک با Terraform روی ArvanCloud Kubernetes در سه محیط:
   - Development / Staging / Production  
