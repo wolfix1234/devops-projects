@@ -1,0 +1,59 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform
+  namespace: argocd
+spec:
+  description: Platform applications project
+  
+  sourceRepos:
+  - 'https://github.com/wolfixor/gitops-repo'
+  
+  destinations:
+  - namespace: dev
+    server: https://kubernetes.default.svc
+  - namespace: staging
+    server: https://kubernetes.default.svc
+  - namespace: production
+    server: https://kubernetes.default.svc
+  
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+  - group: networking.k8s.io
+    kind: Ingress
+  - group: networking.k8s.io
+    kind: NetworkPolicy
+  
+  namespaceResourceWhitelist:
+  - group: ''
+    kind: Service
+  - group: ''
+    kind: ConfigMap
+  - group: ''
+    kind: Secret
+  - group: apps
+    kind: Deployment
+  - group: apps
+    kind: ReplicaSet
+  - group: ''
+    kind: Pod
+  - group: autoscaling
+    kind: HorizontalPodAutoscaler
+  
+  roles:
+  - name: admin
+    description: Admin access to platform project
+    policies:
+    - p, proj:platform:admin, applications, *, platform/*, allow
+    - p, proj:platform:admin, repositories, *, *, allow
+    groups:
+    - platform-admins
+  
+  - name: developer
+    description: Developer access to dev environment
+    policies:
+    - p, proj:platform:developer, applications, get, platform/*-dev, allow
+    - p, proj:platform:developer, applications, sync, platform/*-dev, allow
+    groups:
+    - platform-developers

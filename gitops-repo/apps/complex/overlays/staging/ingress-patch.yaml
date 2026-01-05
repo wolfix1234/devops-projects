@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: complex-ingress
+spec:
+  tls:
+  - hosts:
+    - complex-staging.wolfixsite.shop
+    secretName: complex-staging-tls
+  rules:
+  - host: complex-staging.wolfixsite.shop
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: complex
+            port:
+              number: 80

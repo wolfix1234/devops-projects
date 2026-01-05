@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: dev
+
+resources:
+  - ../../base
+
+images:
+  - name: wolfix1245/payment
+    newTag: "dev-latest"
+
+commonLabels:
+  environment: development

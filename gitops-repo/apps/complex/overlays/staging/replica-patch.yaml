@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: complex
+spec:
+  replicas: 2
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/staging
+                    operator: In
+                    values:
+                      - "worker-staging"
+      containers:
+      - name: complex
+        resources:
+          requests:
+            cpu: "400m"
+            memory: "800Mi"
+            ephemeral-storage: "800Mi"
+          limits:
+            cpu: "800m"
+            memory: "1600Mi"
+            ephemeral-storage: "800Mi"

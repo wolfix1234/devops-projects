@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: payment-config
+  labels:
+    app: payment
+data:
+  # TODO: Add actual payment app configuration
+  STRIPE_API_URL: "https://api.stripe.com"
+  DATABASE_URL: "mongodb://mongodb:27017/payment"

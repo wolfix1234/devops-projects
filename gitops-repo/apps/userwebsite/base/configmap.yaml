@@ -1,0 +1,5 @@
+# Secrets configuration for userwebsite app
+# The shared-secret must include these keys:
+# - MONGODB_URI, JWT_SECRET, SMS_IR_TEMPLATE_ID
+# - AI_DEEPSEEK_KEY, ARVAN_API_TOKEN, SMS_IR_API_KEY
+# - SMS_IR_LINE_NUMBER, ZARINPAL_MERCHANT_ID

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: complex
+spec:
+  replicas: 1
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/worker
+                    operator: In
+                    values:
+                      - "worker-dev"
+      containers:
+      - name: complex
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "500Mi"
+            ephemeral-storage: "500Mi"
+          limits:
+            cpu: "500m"
+            memory: "1000Mi"
+            ephemeral-storage: "500Mi"

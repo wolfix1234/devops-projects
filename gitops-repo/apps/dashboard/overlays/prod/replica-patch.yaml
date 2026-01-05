@@ -1,0 +1,2 @@
+# Production uses the base configuration as-is
+# Only image tag will be updated by CI pipeline

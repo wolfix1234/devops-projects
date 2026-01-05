@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard-app
+  labels:
+    app: dashboard-app
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 600
+  selector:
+    matchLabels:
+      app: dashboard-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: dashboard-app
+        name: dashboard-app
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/production
+                    operator: In
+                    values:
+                      - "worker-production"
+      tolerations: []
+      containers:
+        - name: dashboard-app
+          image: wolfix1245/dashboard:prod-latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1000Mi"
+              ephemeral-storage: "1Gi"
+            limits:
+              cpu: "1000m"
+              memory: "2000Mi"
+              ephemeral-storage: "1Gi"
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: JWT_SECRET
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: MONGODB_URI
+            - name: ZARINPAL_MERCHANT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: ZARINPAL_MERCHANT_ID
+            - name: ARVAN_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: ARVAN_API_TOKEN
+            - name: SMS_IR_LINE_NUMBER
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: SMS_IR_LINE_NUMBER
+            - name: SMS_IR_TEMPLATE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: SMS_IR_TEMPLATE_ID
+            - name: SMS_IR_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: SMS_IR_API_KEY
+            - name: NAMESPACE
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: NAMESPACE
+            - name: ARVAN_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: ARVAN_ACCESS_KEY
+            - name: ARVAN_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: ARVAN_SECRET_KEY
+            - name: ARVAN_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: ARVAN_BUCKET_NAME
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30

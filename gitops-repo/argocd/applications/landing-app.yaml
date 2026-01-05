@@ -1,0 +1,65 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: landing-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/wolfixor/gitops-repo
+    targetRevision: main
+    path: apps/landing/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: landing-staging
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/wolfixor/gitops-repo
+    targetRevision: main
+    path: apps/landing/overlays/staging
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: staging
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: landing-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/wolfixor/gitops-repo
+    targetRevision: main
+    path: apps/landing/overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

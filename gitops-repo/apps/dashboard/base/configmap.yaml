@@ -1,0 +1,14 @@
+# Secrets are managed separately - not stored in GitOps repo
+# Create shared-secret manually in each namespace:
+# kubectl create secret generic shared-secret \
+#   --from-literal=JWT_SECRET=your-jwt-secret \
+#   --from-literal=MONGODB_URI=your-mongodb-uri \
+#   --from-literal=ZARINPAL_MERCHANT_ID=your-zarinpal-id \
+#   --from-literal=ARVAN_API_TOKEN=your-arvan-token \
+#   --from-literal=SMS_IR_LINE_NUMBER=your-sms-line \
+#   --from-literal=SMS_IR_TEMPLATE_ID=your-template-id \
+#   --from-literal=SMS_IR_API_KEY=your-sms-key \
+#   --from-literal=NAMESPACE=your-namespace \
+#   --from-literal=ARVAN_ACCESS_KEY=your-access-key \
+#   --from-literal=ARVAN_SECRET_KEY=your-secret-key \
+#   --from-literal=ARVAN_BUCKET_NAME=your-bucket-name

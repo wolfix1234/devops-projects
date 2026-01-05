@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dashboard-ingress
+spec:
+  tls:
+  - hosts:
+    - dashboard-staging.wolfixsite.shop
+    secretName: dashboard-staging-tls
+  rules:
+  - host: dashboard-staging.wolfixsite.shop
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: dashboard-app
+            port:
+              number: 80

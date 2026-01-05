@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: staging
+
+resources:
+  - ../../base
+
+patchesStrategicMerge:
+  - replica-patch.yaml
+  - ingress-patch.yaml
+
+images:
+  - name: wolfix1245/complex
+    newTag: "staging-latest"
+
+commonLabels:
+  environment: staging

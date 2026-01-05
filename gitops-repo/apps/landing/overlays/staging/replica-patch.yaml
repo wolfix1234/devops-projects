@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: landingcomplex-app
+spec:
+  replicas: 1
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/staging
+                    operator: In
+                    values:
+                      - "worker-staging"
+      tolerations: []
+      containers:
+      - name: landingcomplex-app
+        resources:
+          requests:
+            cpu: "400m"
+            memory: "800Mi"
+            ephemeral-storage: "800Mi"
+          limits:
+            cpu: "800m"
+            memory: "800Mi"
+            ephemeral-storage: "1600Mi"

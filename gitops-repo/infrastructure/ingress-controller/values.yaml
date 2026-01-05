@@ -1,0 +1,5 @@
+controller:
+  service:
+    annotations:
+      cloud.networking.sotoon.ir/load-balancer: "my-ingress-nginx-v2"
+      cloud.networking.sotoon.ir/load-balancer-external-ip: "my-ingress-nginx-lb-v2"

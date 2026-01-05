@@ -1,0 +1,65 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: userwebsite-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/wolfixor/gitops-repo
+    targetRevision: main
+    path: apps/userwebsite/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: userwebsite-staging
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/wolfixor/gitops-repo
+    targetRevision: main
+    path: apps/userwebsite/overlays/staging
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: staging
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: userwebsite-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/wolfixor/gitops-repo
+    targetRevision: main
+    path: apps/userwebsite/overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

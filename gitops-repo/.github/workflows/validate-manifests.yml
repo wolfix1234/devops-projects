@@ -1,0 +1,79 @@
+name: Validate Kubernetes Manifests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate Manifests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Kustomize
+      uses: imranismail/setup-kustomize@v2
+
+    - name: Validate Dashboard Manifests
+      run: |
+        echo "🔍 Validating Dashboard manifests..."
+        kustomize build apps/dashboard/overlays/dev > /tmp/dashboard-dev.yaml
+        kustomize build apps/dashboard/overlays/staging > /tmp/dashboard-staging.yaml
+        kustomize build apps/dashboard/overlays/prod > /tmp/dashboard-prod.yaml
+        echo "✅ Dashboard manifests are valid"
+
+    - name: Validate Complex Manifests
+      run: |
+        echo "🔍 Validating Complex manifests..."
+        kustomize build apps/complex/overlays/dev > /tmp/complex-dev.yaml
+        kustomize build apps/complex/overlays/staging > /tmp/complex-staging.yaml
+        kustomize build apps/complex/overlays/prod > /tmp/complex-prod.yaml
+        echo "✅ Complex manifests are valid"
+
+    - name: Validate Payment Manifests
+      run: |
+        echo "🔍 Validating Payment manifests..."
+        kustomize build apps/payment/overlays/dev > /tmp/payment-dev.yaml
+        kustomize build apps/payment/overlays/staging > /tmp/payment-staging.yaml
+        kustomize build apps/payment/overlays/prod > /tmp/payment-prod.yaml
+        echo "✅ Payment manifests are valid"
+
+    - name: Validate UserWebsite Manifests
+      run: |
+        echo "🔍 Validating UserWebsite manifests..."
+        kustomize build apps/userwebsite/overlays/dev > /tmp/userwebsite-dev.yaml
+        kustomize build apps/userwebsite/overlays/staging > /tmp/userwebsite-staging.yaml
+        kustomize build apps/userwebsite/overlays/prod > /tmp/userwebsite-prod.yaml
+        echo "✅ UserWebsite manifests are valid"
+
+    - name: Validate Landing Manifests
+      run: |
+        echo "🔍 Validating Landing manifests..."
+        kustomize build apps/landing/overlays/dev > /tmp/landing-dev.yaml
+        kustomize build apps/landing/overlays/staging > /tmp/landing-staging.yaml
+        kustomize build apps/landing/overlays/prod > /tmp/landing-prod.yaml
+        echo "✅ Landing manifests are valid"
+
+    # - name: Validate ArgoCD Applications
+    #   run: |
+    #     echo "🔍 Validating ArgoCD applications..."
+    #     kubectl --dry-run=client --validate=false apply -f argocd/projects/
+    #     kubectl --dry-run=client --validate=false apply -f argocd/applications/
+    #     echo "✅ ArgoCD applications are valid"
+
+    # - name: Security Scan
+    #   uses: aquasecurity/trivy-action@master
+    #   with:
+    #     scan-type: 'config'
+    #     scan-ref: '.'
+    #     format: 'sarif'
+    #     output: 'trivy-results.sarif'
+
+    # - name: Upload Trivy scan results
+    #   uses: github/codeql-action/upload-sarif@v4
+    #   if: always() && hashFiles('trivy-results.sarif') != ''
+    #   with:
+    #     sarif_file: 'trivy-results.sarif'

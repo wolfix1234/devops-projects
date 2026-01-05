@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userwebsite-app
+  labels:
+    app: userwebsite-app
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 600
+  selector:
+    matchLabels:
+      app: userwebsite-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: userwebsite-app
+        name: userwebsite-app
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/production
+                    operator: In
+                    values:
+                      - "worker-production"
+      tolerations: []
+      containers:
+        - name: userwebsite-app
+          image: wolfix1245/userwebsite:2.5
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: MONGODB_URI
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: JWT_SECRET
+            - name: SMS_IR_TEMPLATE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: SMS_IR_TEMPLATE_ID
+            - name: AI_DEEPSEEK_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: AI_DEEPSEEK_KEY
+            - name: ARVAN_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: ARVAN_API_TOKEN
+            - name: SMS_IR_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: SMS_IR_API_KEY
+            - name: SMS_IR_LINE_NUMBER
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: SMS_IR_LINE_NUMBER
+            - name: ZARINPAL_MERCHANT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: shared-secret
+                  key: ZARINPAL_MERCHANT_ID
+            - name: NEXT_PUBLIC_BASE_USERWEBSITE_PAYMENT_URL
+              value: "https://www.wolfixsite.shop"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1000Mi"
+              ephemeral-storage: "1Gi"
+            limits:
+              cpu: "1000m"
+              memory: "2000Mi"
+              ephemeral-storage: "1Gi"
